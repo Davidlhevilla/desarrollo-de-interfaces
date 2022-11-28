@@ -67,9 +67,8 @@ public class VideoJuegosController {
 
 	@FXML
 	public void anadirVideojuego(ActionEvent event) {
-		cbConsola.setValue("");
-		cbPegi.setValue("");
-		if(!txtNombre.getText().isBlank()&&!txtPrecio.getText().isBlank()&&!cbConsola.getValue().isBlank()&&!cbPegi.getValue().isBlank()) {
+		
+		if(!txtNombre.getText().isBlank()&&!txtPrecio.getText().isBlank()&&!cbConsola.getSelectionModel().isEmpty()&&!cbPegi.getSelectionModel().isEmpty()) {
 		if (esNumero(txtPrecio.getText())) {
 			Videojuego v = new Videojuego(txtNombre.getText(), Integer.parseInt(txtPrecio.getText()),
 					cbConsola.getValue().toString(), cbPegi.getValue());
@@ -99,6 +98,12 @@ public class VideoJuegosController {
 			alerta.setContentText("Por favor introduzca todos los campos correctamente");
 			alerta.showAndWait();
 		}
+	}
+	@FXML
+	public void borrarLibro(ActionEvent event) {
+			
+		int indiceSeleccionado = tableJuego.getSelectionModel().getSelectedIndex();
+		tableJuego.getItems().remove(indiceSeleccionado);
 	}
 
 	@FXML

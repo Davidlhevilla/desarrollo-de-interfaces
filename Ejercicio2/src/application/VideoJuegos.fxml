@@ -17,11 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VideoJuegosController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VideoJuegosController">
    <children>
-      <MenuBar fx:id="BarPrefencias" layoutX="-3.0" prefHeight="28.0" prefWidth="606.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
         <menus>
-          <Menu fx:id="BarIniciar" mnemonicParsing="false" text="Iniciar">
+          <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
@@ -31,95 +31,102 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-          <Menu fx:id="BarAyuda" mnemonicParsing="false" text="Ayuda">
+          <Menu mnemonicParsing="false" text="Ayuda">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.5" layoutX="-1.0" layoutY="28.0" prefHeight="373.0" prefWidth="604.0">
+      <SplitPane dividerPositions="0.5" layoutY="27.0" prefHeight="375.0" prefWidth="600.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <BorderPane layoutX="1.0" prefHeight="371.0" prefWidth="297.0">
+                  <BorderPane prefHeight="373.0" prefWidth="296.0">
                      <top>
-                        <Label alignment="CENTER" prefHeight="76.0" prefWidth="309.0" text="Nuevo videojuego" BorderPane.alignment="CENTER">
+                        <Label alignment="CENTER" prefHeight="86.0" prefWidth="303.0" text="Nuevo Videojuego" BorderPane.alignment="CENTER">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </top>
                      <left>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="lblNombre" text="Nombre">
+                              <Label text="Nombre">
                                  <VBox.margin>
-                                    <Insets top="5.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="30.0" />
-                                 </padding>
                               </Label>
                               <Label text="Precio">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="22.0" />
                                  </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="30.0" />
-                                 </padding>
                               </Label>
                               <Label text="Consola">
-                                 <padding>
-                                    <Insets bottom="30.0" />
-                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
                               </Label>
-                              <Label text="PEGI" />
+                              <Label text="PEGI">
+                                 <VBox.margin>
+                                    <Insets top="23.0" />
+                                 </VBox.margin>
+                              </Label>
                            </children>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
                         </VBox>
                      </left>
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="txtNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="171.0">
+                              <TextField fx:id="txtNombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </TextField>
-                              <TextField fx:id="txtPrecio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="171.0">
+                              <TextField fx:id="txtPrecio" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </TextField>
-                              <ChoiceBox fx:id="cbConsola" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                              <ChoiceBox fx:id="cbConsola" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="160.0">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <ChoiceBox fx:id="cbPegi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0">
+                              <ChoiceBox fx:id="cbPegi" prefHeight="25.0" prefWidth="160.0">
                                  <VBox.margin>
-                                    <Insets bottom="40.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <Button fx:id="botonAnadir" mnemonicParsing="false" onAction="#anadirVideojuego" text="Añadir" />
                            </children>
                         </VBox>
                      </center>
+                     <bottom>
+                        <Button fx:id="botonAnadir" mnemonicParsing="false" onAction="#anadirVideojuego" text="Añadir" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="50.0" />
+                           </BorderPane.margin>
+                        </Button>
+                     </bottom>
                   </BorderPane>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <BorderPane prefHeight="371.0" prefWidth="297.0">
+                  <BorderPane prefHeight="373.0" prefWidth="296.0">
                      <top>
-                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="309.0" text="Videojuegos" BorderPane.alignment="CENTER">
+                        <Label alignment="CENTER" prefHeight="86.0" prefWidth="303.0" text="Videojuegos" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </top>
                      <center>
-                        <TableView fx:id="tableJuego" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tableJuego" prefHeight="228.0" prefWidth="255.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn fx:id="columNombre" prefWidth="75.0" text="Nombre" />
                             <TableColumn fx:id="columPrecio" prefWidth="75.0" text="Precio" />

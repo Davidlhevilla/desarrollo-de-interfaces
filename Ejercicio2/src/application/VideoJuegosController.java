@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,20 +12,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.MenuBar;
-
-import javafx.scene.control.Label;
-
-import javafx.scene.control.TableView;
-
-import javafx.scene.control.ChoiceBox;
-
-import javafx.scene.control.Menu;
-
-import javafx.scene.control.TableColumn;
 
 public class VideoJuegosController {
 	@FXML
@@ -33,6 +29,8 @@ public class VideoJuegosController {
 	private ChoiceBox<String> cbPegi;
 	@FXML
 	private Button botonAnadir;
+	@FXML
+	private Button botonEliminar;
 
 	@FXML
 	private TableView<Videojuego> tableJuego;
@@ -60,8 +58,9 @@ public class VideoJuegosController {
 		columPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 		columConsola.setCellValueFactory(new PropertyValueFactory<>("consola"));
 		columPegi.setCellValueFactory(new PropertyValueFactory<>("pegi"));
-
-		tableJuego.setItems(listaVideojuegos);
+		
+		ObservableList listaVideojuegosBD = getVideojuegosBD();
+		tableJuego.setItems(listaVideojuegosBD);
 
 	}
 
@@ -100,16 +99,65 @@ public class VideoJuegosController {
 		}
 	}
 	@FXML
-	public void borrarLibro(ActionEvent event) {
+	public void borrarVideoJuego(ActionEvent event) {
 			
 		int indiceSeleccionado = tableJuego.getSelectionModel().getSelectedIndex();
-		tableJuego.getItems().remove(indiceSeleccionado);
+		
+		System.out.println("Índice a borrar: "+indiceSeleccionado);
+		if(indiceSeleccionado <= -1) {
+			Alert alerta = new Alert(AlertType.ERROR);
+			alerta.setTitle("Error al borrar");
+			alerta.setHeaderText("No se ha seleccionado ningun juego a borrar");
+			alerta.setContentText("Por favor, selecciona un libro para borrarlo");
+			alerta.showAndWait();
+		}else {
+			tableJuego.getItems().remove(indiceSeleccionado);
+			tableJuego.getSelectionModel().clearSelection();;
+		}
+		
+	}
+	private ObservableList<Videojuego> getVideojuegosBD(){
+		/*
+		 * Creamos la ObservableList donde almacenaremos
+		 * los libros obtenidos de la BD
+		 */
+		ObservableList<Videojuego>listaVideojuegosBD = 
+				FXCollections.observableArrayList();
+		
+		//Nos conectamos a la BD
+		DatabaseConnection dbConnection = new DatabaseConnection();
+		Connection connection = dbConnection.getConnection();
+		
+		String query = " select * from videojuegos";
+		
+		
+		//Cerramos la conexion
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Videojuego videojuego = new Videojuego(
+						rs.getString("nombre"),
+						rs.getInt("precio"),
+						rs.getString("consola"),
+						rs.getString("PEGI")
+						);
+				listaVideojuegosBD.add(videojuego);
+			}
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listaVideojuegosBD;
 	}
 
-	@FXML
-	public void borrarVideojuego(ActionEvent event) {
-		System.out.println("Borrando un videojuego");
-	}
+//	@FXML
+//	public void borrarVideojuego(ActionEvent event) {
+//		System.out.println("Borrando un videojuego");
+//	}
 
 	public boolean esNumero(String s) {
 		try {

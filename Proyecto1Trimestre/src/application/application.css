@@ -1,0 +1,25 @@
+.table-view .column-header-background .label{
+     
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+   
+}/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button{
+	-fx-background-color: blue;
+	-fx-font-size: 12pt;
+	-fx-text-fill: lightblue;
+}
+#panel_izq{
+	-fx-background-color: lightblue;
+	
+}
+#panel_der{
+	-fx-background-color: lightblue;
+	
+}
+#panel_table{
+	-fx-background-color: lightblue;
+}
+#menu{
+	-fx-background-color: lightgrey;
+}
